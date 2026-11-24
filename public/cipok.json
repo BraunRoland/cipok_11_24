@@ -1,0 +1,44 @@
+{
+ "cipok": [
+    {
+        "nev": "Adidas Yeezy 350",
+        "kiadas": "2018-06-25",
+        "ar": 300,
+        "elerheto": true,
+        "allapot": "új",
+        "szín": "fehér"
+    },
+    {
+        "nev": "Nike Air Jordan 1",
+        "kiadas": "1988-08-01",
+        "ar": 445,
+        "elerheto": false,
+        "allapot": "megkimélt",
+        "szín": "piros"
+    },
+    {
+        "nev": "Adidas Samba",
+        "kiadas": "2012-04-12",
+        "ar": 80,
+        "elerheto": false,
+        "allapot": "használt",
+        "szín": "zöld"
+    },
+    {
+        "nev": "Nike Air Max 90",
+        "kiadas": "2000-05-04",
+        "ar": 178,
+        "elerheto": true,
+        "allapot": "új",
+        "szín": "kék"
+    },
+    {
+        "nev": "Converse All-Star",
+        "kiadas": "1975-10-20",
+        "ar": 60,
+        "elerheto": true,
+        "allapot": "használt",
+        "szín": "fekete"
+    }
+ ]   
+}
