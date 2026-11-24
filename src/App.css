@@ -1,0 +1,8 @@
+.nav-link:hover {
+    cursor: pointer;
+}
+
+.card {
+    margin: 10px 0;
+    background-color: rgb(236, 236, 236);
+}

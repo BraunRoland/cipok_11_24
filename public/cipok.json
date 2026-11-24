@@ -6,7 +6,7 @@
         "ar": 300,
         "elerheto": true,
         "allapot": "új",
-        "szín": "fehér"
+        "szin": "purple"
     },
     {
         "nev": "Nike Air Jordan 1",
@@ -14,7 +14,7 @@
         "ar": 445,
         "elerheto": false,
         "allapot": "megkimélt",
-        "szín": "piros"
+        "szin": "red"
     },
     {
         "nev": "Adidas Samba",
@@ -22,7 +22,7 @@
         "ar": 80,
         "elerheto": false,
         "allapot": "használt",
-        "szín": "zöld"
+        "szin": "green"
     },
     {
         "nev": "Nike Air Max 90",
@@ -30,7 +30,7 @@
         "ar": 178,
         "elerheto": true,
         "allapot": "új",
-        "szín": "kék"
+        "szin": "blue"
     },
     {
         "nev": "Converse All-Star",
@@ -38,7 +38,7 @@
         "ar": 60,
         "elerheto": true,
         "allapot": "használt",
-        "szín": "fekete"
+        "szin": "black"
     }
  ]   
 }
