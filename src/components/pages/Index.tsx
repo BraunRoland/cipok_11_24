@@ -1,7 +1,7 @@
-import type { oldalProps } from "../types/props";
-import Card from "./Card";
+import type { oldalProps } from "../../types/props";
+import Card from "../parts/Card";
 
-function Index({cipok}: oldalProps) {
+function Index({cipok, view}: oldalProps) {
     return (
         <>
         <div className="row">
@@ -11,10 +11,12 @@ function Index({cipok}: oldalProps) {
         </div>
         <div className="row">
             <div className="col-sm-6 mx-auto">
-                {cipok.map((c) => (
+                {cipok.map((c,i) => (
                     <div className="card">
                         <Card
                             cipo={c}
+                            view= {view}
+                            key={i}
                         />
                     </div>
                 ))}

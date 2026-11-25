@@ -4,5 +4,46 @@
 
 .card {
     margin: 10px 0;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(243, 243, 243);
+}
+
+.unav {
+    background-color: rgb(199, 199, 199);
+}
+
+.unav > h4 {
+    text-decoration: line-through;
+}
+
+.modiBtn {
+    width: 50%;
+}
+
+.patchBtn, .modiBtn {
+    margin: 10px 0;
+}
+
+.btnDiv {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+#form {
+    background-color: rgb(248, 174, 125);
+    border: 1px solid brown;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.radioRow{
+    vertical-align: middle;
+    margin-top: 10px;
+}
+
+.modiBtnDiv > .btn {
+    margin-right: 5px;
+    margin-top: 10px;
 }
