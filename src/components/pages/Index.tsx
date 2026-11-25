@@ -12,11 +12,10 @@ function Index({cipok, view}: oldalProps) {
         <div className="row">
             <div className="col-sm-6 mx-auto">
                 {cipok.map((c,i) => (
-                    <div className="card">
+                    <div className="card" key={i}>
                         <Card
                             cipo={c}
                             view= {view}
-                            key={i}
                         />
                     </div>
                 ))}

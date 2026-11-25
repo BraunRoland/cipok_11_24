@@ -1,6 +1,7 @@
 import type { cardProps } from "../../types/props";
 
 function Card({cipo, view}: cardProps) {
+    const dateRegex = /^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/gm;
     return (
         <>
         <div className= {`card-body ${cipo.elerheto? '':'unav'}`} >

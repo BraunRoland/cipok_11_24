@@ -1,11 +1,94 @@
+import type { MouseEvent } from "react";
 import type { formProps } from "../../types/props";
 
-function Form({formCipo, setFormCipo}: formProps) {
-    const dateRegex = /^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/gm
+function Form({formCipo, setFormCipo, uresForm, changeCount, setChangeCount, ref}: formProps) {
+    const dateRegex = /^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/gm;
+
+    function megse(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        setFormCipo(uresForm);
+    }
+
+    function validalas() {
+        if (formCipo.nev == '') {
+            throw new Error('A név nem lehet üres!');
+        } else if (formCipo.kiadas > new Date()) {
+            throw new Error('A dátum nem jó!');
+        } else if (formCipo.ar < 0 ) {
+            throw new Error('Az ár nem lehet kisebb 0-nál!')
+        } else if (formCipo.allapot != 'új' && formCipo.allapot != 'megkimélt' && formCipo.allapot == 'használt') {
+            throw new Error('Rossz állapot!');
+        } else if (formCipo.szin == '') {
+            throw new Error('Üres szín!');
+        }
+        return dateRegex.test(formCipo.kiadas.toString())? formCipo.kiadas.toString() : formCipo.kiadas.toISOString().split('T')[0]
+    }
+
+    async function torles(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:3000/cipok/${formCipo.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "applications/json"
+                }
+            });
+        if (response.ok) {
+            setChangeCount(changeCount+=1);
+            megse(e);
+        }
+        } catch (err) {
+            if (err instanceof Error) {
+                alert(err.message);
+            }
+        }
+    }
+    async function mentes(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault()
+        try {
+            const date = validalas();
+            const response = await fetch(`http://localhost:3000/cipok/${formCipo.id}`,{
+                method: "PUT",
+                headers: {
+                    "Content-Type": "applications/json" 
+                },
+                body: JSON.stringify({...formCipo, kiadas: date})
+            });
+            if (response.ok) {
+                setChangeCount(changeCount+=1);
+                megse(e);
+            }
+        } catch(err) {
+            if (err instanceof Error) {
+                alert(err.message);
+            }
+        }
+    }
+    async function hozzadas(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        try{
+            const date = validalas();
+            const response = await fetch(`http://localhost:3000/cipok`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "applications/json"
+                },
+                body: JSON.stringify({nev: formCipo.nev, kiadas: date, ar: formCipo.ar, elerheto: formCipo.elerheto, allapot: formCipo.allapot, szin: formCipo.szin})
+            });
+            if (response.ok) {
+                setChangeCount(changeCount+=1);
+                megse(e);
+            }
+        } catch (err) {
+            if (err instanceof Error) {
+                alert(err.message);
+            }
+        }    
+    }
     return(
     <>
     <form id="form">
-        <div className="row">
+        <div className="row" ref={ref}>
             <div className="col-sm-12">
                 <label htmlFor="nev" className="form-label">Név</label>
                 <input 
@@ -59,7 +142,7 @@ function Form({formCipo, setFormCipo}: formProps) {
                 </select>
             </div>
         </div>
-        <div className="row radioRow ">
+        <div className="row radioRow">
             <div className="col">
                 <div className="form-check">
                     <label htmlFor="elerheto" className="form-check-label">Elérhetőség</label>
@@ -87,14 +170,14 @@ function Form({formCipo, setFormCipo}: formProps) {
         </div>
         {formCipo.id === '' && (
             <div className="ujBtnDiv">
-                <button className="btn btn-success">hozzáadás</button>
+                <button className="btn btn-success" onClick={(e) => hozzadas(e)}>hozzáadás</button>
             </div>
         )}
         {formCipo.id !== '' && (
             <div className="modiBtnDiv">
-                <button className="btn btn-success">mentés</button>
-                <button className="btn btn-secondary">mégse</button>
-                <button className="btn btn-danger float-sm-end">törlés</button>
+                <button className="btn btn-success" onClick={(e) => mentes(e)}>mentés</button>
+                <button className="btn btn-secondary" onClick={(e) => megse(e)}>mégse</button>
+                <button className="btn btn-danger float-sm-end" onClick={(e) => torles(e)}>törlés</button>
             </div>
         )}
     </form>

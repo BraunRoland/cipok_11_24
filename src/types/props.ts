@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from "react"
+import type { Dispatch, RefObject, SetStateAction } from "react"
 import type { Cipo } from "./types"
 
 export type navbarProps = {
@@ -21,4 +21,8 @@ export type oldalProps = {
 export type formProps = {
     formCipo: Cipo,
     setFormCipo: Dispatch<SetStateAction<Cipo>>
+    uresForm: Cipo
+    changeCount: number
+    setChangeCount: Dispatch<SetStateAction<number>>
+    ref: RefObject<HTMLDivElement|null>
 }

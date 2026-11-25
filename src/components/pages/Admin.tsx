@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { oldalProps } from "../../types/props";
 import type { Cipo } from "../../types/types";
 import Card from "../parts/Card";
 import Form from "../parts/Form";
 
-function Admin({cipok, view}: oldalProps) {
+function Admin({cipok, view, changeCount, setChangeCount}: oldalProps) {
     const uresform: Cipo = {
-        id: 'asd',
+        id: '',
         nev: '',
         kiadas: new Date(),
         elerheto: false,
@@ -15,19 +15,15 @@ function Admin({cipok, view}: oldalProps) {
         allapot: 'új'
     };
     const [formCipo, setFormCipo] = useState<Cipo>(uresform);
-
-    function megse() {
-
-    }
-    function torles(shoe: Cipo) {
-
-    }
-    function mentes(shoe: Cipo) {
-
-    }
-    function hozzadas() {
-        
-    }
+    const targetSection = useRef<HTMLDivElement | null>(null); //Ai-al neztem meg ezt hogy kell csinalni
+    
+    function modositas(c: Cipo) {
+        setFormCipo(c);
+        targetSection.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        })    
+    }   
     return (
         <>
         <div className="row">
@@ -40,6 +36,10 @@ function Admin({cipok, view}: oldalProps) {
                 <Form
                     formCipo={formCipo}
                     setFormCipo={setFormCipo}
+                    uresForm={uresform}
+                    changeCount={changeCount}
+                    setChangeCount={setChangeCount}
+                    ref={targetSection}
                 />
             </div>
         </div>
@@ -53,7 +53,7 @@ function Admin({cipok, view}: oldalProps) {
                             setFormCipo={setFormCipo}
                         />
                         <div className="btnDiv">
-                            <button className="btn btn-warning modiBtn" onClick={()=> (setFormCipo(c))}>Módosítás</button>
+                            <button className="btn btn-warning modiBtn" onClick={()=> modositas(c)}>Módosítás</button>
                         </div>
                     </div>
                 ))}
